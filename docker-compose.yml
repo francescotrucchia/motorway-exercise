@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  motorway:
+    image: motorway/app:0.1
+    build:
+      context: ./app
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - ./app:/motorway

@@ -1,0 +1,1 @@
+{"version":1,"defects":{"App\\Tests\\Unit\\MotorwayTest::it_create_a_motorway":5,"App\\Tests\\Unit\\MotorwayTest::it_add_a_segment":5},"times":{"App\\Tests\\Unit\\MotorwayTest::it_create_a_motorway":0.063,"App\\Tests\\Unit\\MotorwayTest::it_add_a_segment":0.053}}
