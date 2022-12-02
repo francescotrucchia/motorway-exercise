@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace App\Infrastructure;
 
 use App\Domain\Route;
-use App\Domain\Station;
 use PDO;
 use Ramsey\Uuid\Nonstandard\Uuid;
 
-class RouteRepository
+final class RouteRepository
 {
     private PDO $connection;
 
@@ -34,7 +33,7 @@ class RouteRepository
         }
     }
 
-    public function load(string $id): Route
+    public function load(string $id): ?Route
     {
         $query = 'SELECT * FROM ROUTE WHERE id = :id';
 
@@ -42,6 +41,10 @@ class RouteRepository
         $stm->execute([':id' => $id]);
 
         $result = $stm->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
 
         return new Route($result['id'], $result['name'], $result['price']);
     }

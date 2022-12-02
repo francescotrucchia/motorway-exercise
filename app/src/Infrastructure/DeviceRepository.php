@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace App\Infrastructure;
 
 use App\Domain\Device;
-use App\Domain\Route;
-use App\Domain\Station;
 use PDO;
-use Ramsey\Uuid\Nonstandard\Uuid;
 
-class DeviceRepository
+final class DeviceRepository
 {
     private PDO $connection;
 
@@ -27,7 +24,7 @@ class DeviceRepository
         $stm->execute([':id' => $device->getId(), ':userId' => $device->getUserId()]);
     }
 
-    public function load(string $id): Device
+    public function load(string $id): ?Device
     {
         $query = 'SELECT * FROM DEVICE WHERE id = :id';
 
@@ -35,6 +32,10 @@ class DeviceRepository
         $stm->execute([':id' => $id]);
 
         $result = $stm->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
 
         return new Device($result['id'], $result['user_id']);
     }
