@@ -21,7 +21,7 @@ docker-compose exec motorway php bin/phpunit tests
 
 3. Simulate a motorway exit:
 
-`http://127.0.0.1:8080/enter/STATION-MI/{log-id}`
+`http://127.0.0.1:8080/exit/STATION-MI/{log-id}`
 
 where `log-id` is the result of previous call
 
